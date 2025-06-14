@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Lesson 4</title>
+    <style>
+        button {color: white; border: none; border-radius: 5px; padding: 10px 15px; background-color: rgb(0, 123, 255); margin: 5px;}
+        .show-button {background-color: lightgray; margin-left: 10px; color: black; padding: 5px 10px;}
+        input {margin: 5px; padding: 5px;}
+    </style>
+</head>
+<body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+    // 4h, 4i - Counter App using useRef hook
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        const buttonRef = React.useRef(null);
+
+        React.useEffect(() => {
+            const buttonElem = buttonRef.current;
+            setInterval(() => {buttonElem.click()}, 5000);            
+        }, [counter]);
+        
+        function updateCounter() { setCounter(counter + 1); }
+        function resetCounter() { setCounter(0); }
+        
+        return ( <>
+        <button onClick={updateCounter}>Clicked {counter} {counter===1 ? 'time' : 'times'}</button>
+        <button onClick={resetCounter}>Reset</button>
+        <button onClick={updateCounter} ref={buttonRef}>Auto Click</button>
+        </> )
+    }
+
+
+    //===================================================================    
+    // 4a, 4b, 4c - toggle button ON and OFF
+    // button {color: white; border: none; border-radius: 5px; padding: 10px 15px;} 
+    // .button-on {background-color: rgb(25, 135, 84);}
+    // .button-off {background-color: rgb(220, 53, 69);}
+    // function App() {
+    //     const [isButton, setIsButton] = React.useState(true);
+    //     function clickHandler() {
+    //         setIsButton(!isButton);
+    //     }
+    //     return (
+    //         <button className={isButton ? 'button-on' : 'button-off'} onClick={clickHandler}>
+    //             {isButton ? 'ON' : 'OFF'}
+    //         </button>
+    //     )
+    // }
+
+    // // 4d, 4e - login form - add button to toggle show/hide password
+    // function App() {
+    //     const [showPassword, setShowPassword] = React.useState(false);
+    //     function passHandler() {
+    //         setShowPassword(!showPassword);
+    //     }
+    //     return ( <>
+    //         <p>Hello, welcome to my website</p>
+    //         <input type='text' placeholder='Email' />
+    //         <br></br>
+    //         <input placeholder='Password' type={showPassword ? 'text' : 'password'} />
+    //         <button onClick={passHandler} className='show-button'>show</button> 
+    //         <br></br>   
+    //         <button>Login</button>
+    //         <button>Sign up</button>
+    //     </> )
+    // }
+
+    // 4f, 4g - create a clock using hooks: useState and useEffect
+    // function App() {
+    //     const [time, setTime] = React.useState('');
+    //     React.useEffect(() => {
+    //         setInterval(() => { setTime(dayjs().format('HH:mm:ss'))}, 1000);
+    //         console.log('run code');
+    //     })  // run useEffect once after the component is created
+    //     // }, [])  // run useEffect once after the component is created  
+    //     return (
+    //         <p>Current time: {time}</p>
+    //     )   }
+
+    //===================================================================
+    const container = document.querySelector('.js-container');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+    
+    </script>
+</body>
+</html>
