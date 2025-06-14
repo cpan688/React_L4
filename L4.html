@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Lesson 4</title>
     <style>
-        button {color: white; border: none; border-radius: 5px; padding: 10px 15px; background-color: rgb(0, 123, 255); margin: 5px;}
-        .show-button {background-color: lightgray; margin-left: 10px; color: black; padding: 5px 10px;}
-        input {margin: 5px; padding: 5px;}
+        body {margin-top: 0; margin-bottom: 0;}
+        button {color: white; border: none; padding: 10px 15px; margin: 5px; background-color: rgb(25, 135, 84);}
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(222,222,222);
+        }
     </style>
 </head>
 <body>
@@ -19,7 +25,7 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-    // 4h, 4i - Counter App using useRef hook
+    // 4h, 4i - Counter App using useRef hook to create Auto Click
     function App() {
         const [counter, setCounter] = React.useState(0);
         const buttonRef = React.useRef(null);
@@ -33,9 +39,11 @@
         function resetCounter() { setCounter(0); }
         
         return ( <>
-        <button onClick={updateCounter}>Clicked {counter} {counter===1 ? 'time' : 'times'}</button>
-        <button onClick={resetCounter}>Reset</button>
-        <button onClick={updateCounter} ref={buttonRef}>Auto Click</button>
+        <div className='container'>
+            <button onClick={updateCounter}>Clicked {counter} {counter===1 ? 'time' : 'times'}</button>
+            <button onClick={resetCounter}>Reset</button>
+            <button onClick={updateCounter} ref={buttonRef}>Auto Click</button>
+        </div>
         </> )
     }
 
@@ -58,6 +66,11 @@
     // }
 
     // // 4d, 4e - login form - add button to toggle show/hide password
+    // <style>
+    //     button {color: white; border: none; border-radius: 5px; padding: 10px 15px; background-color: rgb(0, 123, 255); margin: 5px;}
+    //     .show-button {background-color: lightgray; margin-left: 10px; color: black; padding: 5px 10px;}
+    //     input {margin: 5px; padding: 5px;}
+    // </style>
     // function App() {
     //     const [showPassword, setShowPassword] = React.useState(false);
     //     function passHandler() {
